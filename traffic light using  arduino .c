@@ -12,13 +12,10 @@ void setup() {
 }
 
 void loop() {
-  // Red light
+  // Red light - Stop
   digitalWrite(red, HIGH);
-  delay(15000);
+  playTone(buzzerPin, 1000, 1500); // Voice: "Stop"
   digitalWrite(red, LOW);
-
-  // Function to play a tone for the specified duration
-  playTone(buzzerPin, 1000, 1500);
 
   // Yellow light
   for (int i = 0; i < 6; i++) {
@@ -28,13 +25,10 @@ void loop() {
     delay(500);
   }
 
-  // Green light
+  // Green light - Go
   digitalWrite(green, HIGH);
-  delay(20000);
+  playTone(buzzerPin, 1500, 1500); // Voice: "Go"
   digitalWrite(green, LOW);
-
-  // Function to play a tone for the specified duration
-  playTone(buzzerPin, 1500, 1500);
 
   // Yellow light
   for (int i = 0; i < 5; i++) {
@@ -46,7 +40,7 @@ void loop() {
 }
 
 void playTone(int pin, int frequency, int duration) {
-  tone(pin, frequency);
+  toneAC(pin, frequency);
   delay(duration);
   noTone(pin);
 }
