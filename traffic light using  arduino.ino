@@ -1,58 +1,45 @@
-#include <toneAC.h>
-#include <Talkie.h>
+#define ledr 7
+#define ledg 9
+#define ledY 8
+#define voice1 10
+#define voice2 5
 
-int red = 9;
-int yellow = 8;
-int green = 7;
-int buzzerPin = 6; // Replace 6 with the actual pin number you connect the buzzer to
-
-Talkie voice;
+#define buz 6
 
 void setup() {
-  pinMode(red, OUTPUT);
-  pinMode(yellow, OUTPUT);
-  pinMode(green, OUTPUT);
-  pinMode(buzzerPin, OUTPUT);
-  
-  voice.begin();
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(ledr,OUTPUT);
+pinMode(ledg,OUTPUT);
+pinMode(ledY,OUTPUT);
+pinMode(buz,OUTPUT);
+pinMode(voice1,OUTPUT);
+pinMode(voice2,OUTPUT);
 
-  // Load the voice data for "Stop" and "Go"
-  voice.say("Stop");
-  voice.say("Go");
 }
 
-void loop() {
-  // Red light - Stop
-  digitalWrite(red, HIGH);
-  playTone(buzzerPin, 1000, 1500); // Voice: "Stop"
-  voice.say("Stop");  // Use Talkie to say "Stop"
-  digitalWrite(red, LOW);
-
-  // Yellow light
-  for (int i = 0; i < 6; i++) {
-    digitalWrite(yellow, HIGH);
-    delay(1000);
-    digitalWrite(yellow, LOW);
-    delay(500);
-  }
-
-  // Green light - Go
-  digitalWrite(green, HIGH);
-  playTone(buzzerPin, 1500, 1500); // Voice: "Go"
-  voice.say("Go");  // Use Talkie to say "Go"
-  digitalWrite(green, LOW);
-
-  // Yellow light
-  for (int i = 0; i < 5; i++) {
-    digitalWrite(yellow, HIGH);
-    delay(1000);
-    digitalWrite(yellow, LOW);
-    delay(500);
-  }
-}
-
-void playTone(int pin, int frequency, int duration) {
-  toneAC(pin, frequency);
-  delay(duration);
-  noTone(pin);
+void loop() 
+{
+digitalWrite(voice2, 1);
+digitalWrite(voice1, 1);
+delay(1000);
+digitalWrite(ledr, 1);
+digitalWrite(buz,HIGH);
+digitalWrite(voice1, 0);
+delay(2000);
+digitalWrite(voice1, 1);
+digitalWrite(buz,LOW);
+digitalWrite(ledr, 0);
+delay(2000);
+digitalWrite(ledY, 1);
+delay(2000);
+digitalWrite(ledY, 0);
+delay(2000);
+ 
+digitalWrite(ledg, 1);
+digitalWrite(voice2, 0);
+delay(1000);
+digitalWrite(voice2, 1);
+digitalWrite(ledg, 0);
+delay(3000);
 }
