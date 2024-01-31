@@ -1,3 +1,6 @@
+#include <toneAC.h>
+#include <Talkie.h>
+
 #define ledr 7
 #define ledg 9
 #define ledY 8
